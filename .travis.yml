@@ -14,6 +14,7 @@ before_install:
  - $CC --version
  - $CXX --version
  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+ - sudo add-apt-repository --yes ppa:ppa:beineri/opt-qt551-trusty
  - sudo apt-get update -qq
  - echo $CC
  - export QtMkspec=$CC
@@ -24,6 +25,7 @@ install:
  - sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
  - sudo apt-get install libboost-all-dev
  - sudo apt-get install libc++-dev
+ - sudo apt-get install qt55-default
  - git clone https://github.com/miloyip/rapidjson.git ~/rapidjson
  - cd ~/rapidjson
  - mkdir build
@@ -32,6 +34,8 @@ install:
  - sudo make install
 
 script:
+ - source /opt/qt55/bin/qt55-env.sh
+ - /opt/qt55/bin/qmake -v
  - cd $TRAVIS_BUILD_DIR
  - echo $CC
  - echo $QtMkspec
