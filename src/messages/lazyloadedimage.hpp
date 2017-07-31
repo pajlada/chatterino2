@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QMargins>
 #include <QPixmap>
 #include <QString>
 

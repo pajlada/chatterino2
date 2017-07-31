@@ -11,6 +11,12 @@ before_install:
  - sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
  - sudo apt-get install libboost-all-dev rapidjson-dev
  - sudo apt-get install libc++-dev
+ - git clone https://github.com/miloyip/rapidjson.git ~/rapidjson
+ - cd ~/rapidjson
+ - mkdir build
+ - cd build
+ - cmake ..
+ - sudo make install
  - QtMkspec=$CC
  - $CC --version
  - $CXX --version
