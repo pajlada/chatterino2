@@ -13,6 +13,7 @@ before_install:
  - sudo apt-get install libc++-dev
  - QtMkspec=$CC
  - $CC --version
+ - $CXX --version
  - which $CC
 
 script:
