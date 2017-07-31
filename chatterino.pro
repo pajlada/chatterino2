@@ -16,6 +16,16 @@ linux-clang {
     QMAKE_CXXFLAGS += -std=c++14 -stdlib=libc++
 }
 
+linux-g++ {
+    message("Enabling C++14 for g++")
+    system( g++ --version | grep -e "\<4.[0-9]" ) {
+        message("g++ versino 4.x")
+    } else {
+    message("g++ Version other")
+    }
+    QMAKE_CXXFLAGS += -std=c++14 -stdlib=libc++
+}
+
 DEFINES += IRC_NAMESPACE=Communi
 include(lib/libcommuni/src/src.pri)
 
