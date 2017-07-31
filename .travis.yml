@@ -36,5 +36,5 @@ script:
  - echo $QtMkspec
  - $QtMkspec --version
  - qmake -qt=qt5 -v
- - qmake -qt=qt5 -spec linux-$QtMkspec
+ - qmake -qt=qt5 -spec linux-clang
  - make 
