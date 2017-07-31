@@ -32,9 +32,10 @@ install:
  - sudo make install
 
 script:
+ - cd $TRAVIS_BUILD_DIR
  - echo $CC
  - echo $QtMkspec
  - $QtMkspec --version
  - qmake -qt=qt5 -v
- - qmake -qt=qt5 -spec linux-clang
+ - qmake -qt=qt5 -spec linux-$QtMkspec
  - make 
