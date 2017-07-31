@@ -11,7 +11,8 @@ CONFIG  += c++14
 
 # Ensure that C++14 is enabled
 
-linux-clang++ {
+linux-clang {
+    message("Enabling C++14 for Clang")
     QMAKE_CXXFLAGS += -std=c++14
 }
 
