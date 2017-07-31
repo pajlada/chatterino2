@@ -9,6 +9,12 @@ CONFIG  += communi
 COMMUNI += core model util
 CONFIG  += c++14
 
+# Ensure that C++14 is enabled
+
+linux-clang++ {
+    QMAKE_CXXFLAGS += -std=c++14
+}
+
 DEFINES += IRC_NAMESPACE=Communi
 include(lib/libcommuni/src/src.pri)
 
