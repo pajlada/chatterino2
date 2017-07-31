@@ -10,6 +10,7 @@ before_install:
  - sudo apt-get install qt5-default qttools5-dev-tools
  - sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
  - sudo apt-get install libboost-all-dev
+ - sudo apt-get install libc++-dev
  - QtMkspec=$CC
  - $CC --version
  - which $CC
