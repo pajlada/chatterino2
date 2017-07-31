@@ -13,7 +13,7 @@ CONFIG  += c++14
 
 linux-clang {
     message("Enabling C++14 for Clang")
-    QMAKE_CXXFLAGS += -std=c++14
+    QMAKE_CXXFLAGS += -std=c++14 -stdlib=libc++
 }
 
 DEFINES += IRC_NAMESPACE=Communi
