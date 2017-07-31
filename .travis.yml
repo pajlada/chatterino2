@@ -25,7 +25,7 @@ install:
  - sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
  - sudo apt-get install libboost-all-dev
  - sudo apt-get install libc++-dev
- - sudo apt-get install qt55-default
+ - sudo apt-get install qt55-meta
  - git clone https://github.com/miloyip/rapidjson.git ~/rapidjson
  - cd ~/rapidjson
  - mkdir build
