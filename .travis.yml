@@ -4,9 +4,12 @@ compiler:
     - clang
 
 before_install:
+ - if [ "$CXX" == "g++" ]; then echo "LOL"; fi
+ - echo $CC
  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
  - sudo apt-get update -qq
  - echo $CC
+ - QtMkspec=$CC
 
 install:
  - echo $CC
@@ -27,6 +30,7 @@ install:
  - which $CC
 
 script:
+ - echo $CC
  - qmake -qt=qt5 -v
  - qmake -qt=qt5 -spec linux-$QtMkspec
  - make 
