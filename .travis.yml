@@ -18,6 +18,7 @@ before_install:
  - sudo apt-get update -qq
  - echo $CC
  - export QtMkspec=$CC
+ - if [ "$CC" == "gcc" ]; then export QtMkspec="g++"; fi
 
 install:
  - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
