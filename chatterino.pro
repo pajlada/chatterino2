@@ -23,7 +23,7 @@ linux-g++ {
     } else {
     message("g++ Version other")
     }
-    QMAKE_CXXFLAGS += -std=c++14 -stdlib=libc++
+    QMAKE_CXXFLAGS += -std=c++14
 }
 
 DEFINES += IRC_NAMESPACE=Communi
