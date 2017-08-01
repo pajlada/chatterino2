@@ -34,12 +34,12 @@ install:
  - sudo make install
 
 script:
- - source /opt/qt55/bin/qt55-env.sh
- - /opt/qt55/bin/qmake -v
+ - source /opt/qt57/bin/qt57-env.sh
+ - /opt/qt57/bin/qmake -v
  - cd $TRAVIS_BUILD_DIR
  - echo $CC
  - echo $QtMkspec
  - $QtMkspec --version
- - qmake -qt=qt5 -v
- - qmake -qt=qt5 -spec linux-$QtMkspec
+ - /opt/qt57/bin/qmake -v
+ - /opt/qt57/bin/qmake -spec linux-$QtMkspec
  - make 
