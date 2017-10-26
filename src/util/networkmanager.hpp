@@ -73,6 +73,8 @@ public:
 
         worker->moveToThread(&NetworkManager::workerThread);
 
+        QObject::connect(worker, &NetworkWorker::doneUrl, caller, onFinished);
+
         QObject::connect(&requester, &NetworkRequester::requestUrl, worker, [=]() {
             QNetworkReply *reply = NetworkManager::NaM.get(request);
 
@@ -80,14 +82,10 @@ public:
 
             QObject::connect(reply, &QNetworkReply::finished, worker, [worker, reply]() {
                 emit worker->doneUrl(reply);  //
-                // TODO: Do we need to mark the worker as "to be deleted" here?
+                delete worker;
             });
         });
 
-        QObject::connect(worker, &NetworkWorker::doneUrl, caller, [=](QNetworkReply *reply) {
-            onFinished(reply);
-            delete worker;
-        });
         emit requester.requestUrl();
     }
 
