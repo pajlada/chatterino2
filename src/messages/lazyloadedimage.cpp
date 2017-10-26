@@ -12,9 +12,9 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QTimer>
-#include <thread>
 
 #include <functional>
+#include <thread>
 
 namespace chatterino {
 namespace messages {

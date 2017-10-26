@@ -2,6 +2,7 @@
 
 #include "accountmanager.hpp"
 #include "credentials.hpp"
+#include "util/networkmanager.hpp"
 
 #include <QEventLoop>
 #include <QJsonArray>
@@ -15,9 +16,8 @@
 #include <QTimer>
 
 #include <QDebug>
-#include <functional>
 
-#include "networkmanager.hpp"
+#include <functional>
 
 namespace chatterino {
 namespace util {
