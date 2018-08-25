@@ -15,7 +15,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install rapidjson; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install qt; fi
 
-# before_script:
 #   - set -e
 #   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then unset -f cd; fi
 #   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then shell_session_update() { :; }; fi
@@ -24,6 +23,13 @@ before_install:
 #   - sh build.sh
 #   - cd ..
 #   - export PATH=$(pwd)/bin${PATH:+:$PATH}
+
+before_script:
+  - export PATH="/usr/local/opt/qt/bin:$PATH"
+  - export LDFLAGS="-L/usr/local/opt/qt/lib"
+  - export CPPFLAGS="-I/usr/local/opt/qt/include"
+  - export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
+
 script:
   - mkdir build
   - cd build
