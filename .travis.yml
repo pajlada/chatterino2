@@ -1,37 +1,23 @@
 sudo: false
 language: cpp
 os:
-  - osx
-
-
-matrix:
-  allow_failures:
-    - os: osx
-
+- osx
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openssl; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install rapidjson; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install qt; fi
-
-#   - set -e
-#   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then unset -f cd; fi
-#   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then shell_session_update() { :; }; fi
-#   - git clone --depth 1 https://github.com/nim-lang/csources.git
-#   - cd csources
-#   - sh build.sh
-#   - cd ..
-#   - export PATH=$(pwd)/bin${PATH:+:$PATH}
-
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost openssl rapidjson qt; fi
 before_script:
-  - export PATH="/usr/local/opt/qt/bin:$PATH"
-  - export LDFLAGS="-L/usr/local/opt/qt/lib"
-  - export CPPFLAGS="-I/usr/local/opt/qt/include"
-  - export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
-
+- export PATH="/usr/local/opt/qt/bin:$PATH"
+- export LDFLAGS="-L/usr/local/opt/qt/lib"
+- export CPPFLAGS="-I/usr/local/opt/qt/include"
+- export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
 script:
-  - mkdir build
-  - cd build
-  - qmake ..
-  - make
+- mkdir build
+- cd build
+- qmake ..
+- make
+- zip chatterino.zip chatterino.app
+deploy:
+  provider: releases
+  api_key:
+    secure: QYL+pBnbuIfEB0W1GX6B+/GLPURix2bVtKSCRAdz7U933MqMOeQrDFnnNhvpLS4bYGfxFk3rgLkQ//mOeEATdux0esCnzrgrTTGOHO8TdLr4ZtmPE7VbplPzcQOscCgAshZrWVz5tL38i6Bx8U4zeMfgK/6GETefdym5Kl1M0/x2FWk4Ama2zi7hVudWm8KENtGR+40XwuVbv3BXUuRyCweRf9p6gdcyCCaN2YVkFFELHSbM8WpsRMnDByYUC6tBGhjUvOjBOPFsA6lWiGVZTgnw30X9LZnXVBmSIZX+uCthvl3X5uxHZLFNuB8Y/Rf7mgZZXOBN9oC49VjryG8VnLf5Hh5NGgUkzAT/bhEfN63GumVoE7cGHdllGuQi0xDhnOiDvi4FYkiTiDDCH5sBfoLanLB0dj/aH93KTSQbjqIVt/0SeLuyIy5jNuIA/Vb+2/YBXzvGCiXNsRFl1Lvh5WlXUw339vRH4E1kn5LcJN9pQybyXo2kKrANWVAHPWBu4xwDbCS+//uSKdVZMxXnKux6dx6hNI1y+9pYuUYOZqoSRWkUyntwz4ojdGMm9JxmvScF3QfiRRbl4or8gXUzsFdQPoX7yTn9DT7Uf9xNA+7S5QKGenV6uueJ8tCZQMcrV9tiFKhbV0eX6slevmIR8ORIJJyMppsY8jG0ZkZ80ho=
+  file: build/chatterino.zip
