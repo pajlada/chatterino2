@@ -1,10 +1,31 @@
-before_install:
- - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
- - sudo apt-get update -qq
- - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
- - sudo apt-get install qt5-default qttools5-dev-tools
+sudo: false
+language: cpp
+os:
+  - osx
 
+
+matrix:
+  allow_failures:
+    - os: osx
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openssl; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install rapidjson; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install qt; fi
+
+# before_script:
+#   - set -e
+#   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then unset -f cd; fi
+#   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then shell_session_update() { :; }; fi
+#   - git clone --depth 1 https://github.com/nim-lang/csources.git
+#   - cd csources
+#   - sh build.sh
+#   - cd ..
+#   - export PATH=$(pwd)/bin${PATH:+:$PATH}
 script:
- - qmake -qt=qt5 -v
- - qmake -qt=qt5
- - make 
+  - mkdir build
+  - cd build
+  - qmake ..
+  - make
