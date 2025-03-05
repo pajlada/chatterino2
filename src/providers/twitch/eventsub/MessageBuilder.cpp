@@ -10,6 +10,8 @@
 #include "singletons/StreamerMode.hpp"
 #include "util/Helpers.hpp"
 
+#include <QStringBuilder>
+
 namespace {
 
 using namespace chatterino;
