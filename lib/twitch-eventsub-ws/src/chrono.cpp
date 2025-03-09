@@ -1,6 +1,6 @@
 #include "twitch-eventsub-ws/chrono.hpp"
 
-#ifdef HAS_STDLIB_CHRONO_PARSE
+#if __cpp_lib_chrono >= 201907L
 #    include <chrono>
 using namespace std::chrono;
 #else
