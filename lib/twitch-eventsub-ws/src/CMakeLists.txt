@@ -48,7 +48,22 @@ add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 # Generate source groups for use in IDEs
 # source_group(TREE ${CMAKE_SOURCE_DIR} FILES ${SOURCE_FILES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/../include"
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    $<$<BOOL:${HAS_STDLIB_CHRONO_PARSE}>:HAS_STDLIB_CHRONO_PARSE>
+)
+
+if (NOT HAS_STDLIB_CHRONO_PARSE)
+    message(STATUS "no std::chrono::parse support found, using date submodule")
+    target_include_directories(${PROJECT_NAME}
+        PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/../lib/date/include"
+    )
+endif ()
 
 
 target_link_libraries(${PROJECT_NAME}
