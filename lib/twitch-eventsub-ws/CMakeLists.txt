@@ -31,11 +31,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(cmake/GenerateJson.cmake)
 
-try_compile(
-    HAS_STDLIB_CHRONO_PARSE
-    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/has-chrono-parse.cpp
-)
-
 add_subdirectory(src)
 
 if(BUILD_TESTS)
